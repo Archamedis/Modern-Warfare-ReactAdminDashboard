@@ -1,13 +1,37 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+html,
+body,
+#root,
+.app,
+.content {
+  height: 100%;
+  width: 100%;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.app {
+  display: flex;
+  position: relative;
 }
+
+/* wtf you can style the scroll bar?! */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* track -- the track (progress bar) of the scroll bar */
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+
+/* handle -- dragable bit of scroll bar */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* handle on hover --  when hovering over dragable bit of scroll bar */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
