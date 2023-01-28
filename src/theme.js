@@ -134,9 +134,82 @@ export const themeSettings = (mode) => {
                     main: colors.primary[500],
                 },
                 secondary: {
-                    main: colors.greenAccent[]
-                }
-            } : {})
+                    main: colors.greenAccent[500],
+                },
+                neutral: {
+                    dark: colors.grey[700],
+                    main: colors.grey[500],
+                    light: colors.grey[100],
+                },
+                background: {
+                    default: colors.primary[500],
+                },
+            } : {
+                // palette for light mode
+                primary: {
+                    main: colors.primary[100],
+                },
+                secondary: {
+                    main: colors.greenAccent[500],
+                },
+                neutral: {
+                    dark: colors.grey[700],
+                    main: colors.grey[500],
+                    light: colors.grey[100],
+                },
+                background: {
+                    default: "#fcfcfc",
+                },
+            })
+        },
+        typography: {
+            fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+            fontSize: 12,
+            h1: {
+                fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+                fontSize: 40,
+            }, 
+            h2: {
+                fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+                fontSize: 32,
+            }, 
+            h3: {
+                fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+                fontSize: 24,
+            }, 
+            h4: {
+                fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+                fontSize: 20,
+            }, 
+            h5: {
+                fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+                fontSize: 16,
+            }, 
+            h6: {
+                fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+                fontSize: 14,
+            }, 
         }
     }
+}
+
+// context for color mode
+export const ColorModeContext = createContext({
+    toggleColorMode: () => {} // function to change color of app
+})
+
+export const useMode = () => {
+    const [mode, setMode] = useState("dark"); // easy access to whether it's dark of light
+
+    const colorMode = useMemo ( // uses state whatever the fuck that is
+        () => ({
+            toggleColorMode: () => 
+                setMode((prev) => (prev === "light" ? "dark" : "light")), // function which toggles dark/light
+        }),
+        []
+    );
+
+    const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]); // creating theme from material UI and passing mode from themesettings resulting in object in proper format (light or dark mode)
+    
+    return [theme, colorMode];
 }
